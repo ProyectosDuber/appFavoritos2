@@ -88,7 +88,12 @@ class usuarios_controller{
                    
                    $usario = clUsuario::buscar($query, $arrayDeUsuario);
                   if($usario!=NULL){
-                         header("Location: ../Vista/favoritos.php?respuesta=correcto");
+                      session_start();
+                      
+                      $_SESSION['username'] =$_POST['username'];
+                      $_SESSION['password'] = $_POST['password'];
+                      $_SESSION['idUsuario'] = $usario->getIdUsuario();
+                         header("Location: ../Vista/favoritos.php");
                   }  else {
                      header("Location: ../Vista/login.php?respuesta=invalido");
                   } 
