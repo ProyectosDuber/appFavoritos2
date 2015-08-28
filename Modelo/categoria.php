@@ -85,6 +85,17 @@ class categoria extends db_abstract_class {
     }
     
     public static function todo($idUsuario){
+        $sql = "select * from categorias 
+inner join usuarios
+on categorias.Usuario = usuarios.idUsuario
+
+where idUsuario = ?";
+        $cate = new categoria();
+        $array = $cate->getRows($sql, array($idUsuario));
+        var_dump($array);
+        return $array;
+        
+        
         
     }
 

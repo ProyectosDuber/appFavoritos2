@@ -106,8 +106,8 @@ class clUsuario extends db_abstract_class {
         foreach ($array as $column=>$valor){
             $usuario->$column = $valor;
         }
-        $usuario->setFavoritos(clFavorito::todo($usuario->getIdUsuario()));
-        
+         $usuario->setFavoritos(clFavorito::todo($usuario->getIdUsuario()));
+       $usuario->setCategorias(categoria::todo($usuario->getIdUsuario()));
         
         return $usuario;
         }else{

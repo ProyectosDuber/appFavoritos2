@@ -1,6 +1,8 @@
 <?php
 require_once '../Modelo/db_abstract_class.php';
 require_once '../Modelo/clUsuario.php';
+require_once '../Modelo/clFavorito.php';
+require_once '../Modelo/categoria.php';
 if(!empty($_GET['action'])){
 	usuarios_controller::main($_GET['action']);
 }
