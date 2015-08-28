@@ -108,7 +108,11 @@ class clUsuario extends db_abstract_class {
         }
          $usuario->setFavoritos(clFavorito::todo($usuario->getIdUsuario()));
        $usuario->setCategorias(categoria::todo($usuario->getIdUsuario()));
+<<<<<<< HEAD
 
+=======
+        
+>>>>>>> c3cc8a1155dba3eb1b6a0d943bef0c3f2c4fff33
         return $usuario;
         }else{
             return NULL;

@@ -11,9 +11,16 @@ class categoria extends db_abstract_class {
         
         if(count($datos)>1){
          
+<<<<<<< HEAD
             foreach ($datos as $columna=>$valor){
                 $this->$columna = $valor;
             }
+=======
+            $this->idcategoria = $datos['idcategoria'];
+             $this->nombre = $datos['nombre'];
+              $this->descripcion = $datos['descripcion'];
+               $this->Usuario = $datos['Usuario'];
+>>>>>>> c3cc8a1155dba3eb1b6a0d943bef0c3f2c4fff33
         }else{
             $this->idcategoria =0;
             $this->nombre ="";
@@ -100,6 +107,7 @@ on categorias.Usuario = usuarios.idUsuario
 where idUsuario = ?";
         $cate = new categoria();
         $array = $cate->getRows($sql, array($idUsuario));
+<<<<<<< HEAD
         $categorias = array();
         
         foreach ($array as $datos){
@@ -117,6 +125,10 @@ where idUsuario = ?";
         }
        
         return $categorias;
+=======
+        var_dump($array);
+        return $array;
+>>>>>>> c3cc8a1155dba3eb1b6a0d943bef0c3f2c4fff33
         
         
         

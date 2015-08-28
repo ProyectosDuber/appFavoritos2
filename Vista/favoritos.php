@@ -1,12 +1,19 @@
+<<<<<<< HEAD
 <?php
 session_start();
 ?>
+=======
+ <?php
+        session_start();
+        ?>
+>>>>>>> c3cc8a1155dba3eb1b6a0d943bef0c3f2c4fff33
 
 <?php require_once '../Modelo/db_abstract_class.php'; ?>
 <?php require_once '../Modelo/clUsuario.php'; ?>
 <?php require_once '../Modelo/clFavorito.php'; ?>
 <?php require_once '../Modelo/categoria.php'; ?>
 
+<<<<<<< HEAD
 <?php
 $arrayDeUsuario = array();
 $arrayDeUsuario[] = $_SESSION['username'];
@@ -20,6 +27,18 @@ $usario = clUsuario::buscar($query, $arrayDeUsuario);
 <?php $favoritos = $usario->getFavoritos(); ?>
 <?php $categorias = $usario->getCategorias(); ?>
 
+=======
+<?php  $arrayDeUsuario =array();
+                   $arrayDeUsuario[] = $_SESSION['username'];
+                   $arrayDeUsuario[] = $_SESSION['password'];
+                   
+                   $query = "SELECT * FROM Usuarios where username =? and password=?";
+                   
+                   $usario = clUsuario::buscar($query, $arrayDeUsuario); ?>
+
+<?php  $favoritos=  $usario->getFavoritos()?>
+                   
+>>>>>>> c3cc8a1155dba3eb1b6a0d943bef0c3f2c4fff33
 
 <html>
     <head>
@@ -54,6 +73,7 @@ $usario = clUsuario::buscar($query, $arrayDeUsuario);
 
 
                     <tbody>
+<<<<<<< HEAD
                         <?php
                         if ($favoritos != null) {
                             foreach ($favoritos as $favorito) {
@@ -88,6 +108,46 @@ foreach ($categorias as $categoria) {
                         </tr>   </form>
 
 
+=======
+                      <?php
+                      
+                             
+                             foreach ($favoritos as $favorito){
+                                 echo '<tr>';
+                                 echo '<td>'.$favorito->getUrl().'</td>';
+                                 echo '<td>'.$favorito->getCategoria()->getNombre().'</td>';
+                                 echo '<td>'.$favorito->getDescripcion().'</td>';
+                   
+                                 echo '<td><a href ="./editarFavorito.php?idfavorito='.$favorito->getIdfavorito().'">Editar</a></td>';
+                                 echo '<td><a href ="../Controlador/controladorDeFavoritos.php?action=delete?idfavorito='.$favorito->getIdfavorito().'">Eliminar</a></td>';
+
+                                 echo '</tr>';
+                                 
+                                 
+                             }
+                             
+                 
+                             
+                     
+                     ?> 
+                       
+                        <tr><form action="../Controlador/controladorDeFavoritos.php?action=crear">
+                           <td><input type="text" /></td>
+                           <td><select name="Categoria">
+                                  <?php
+                              foreach ($favoritos as $favorito){
+                                  echo '<option value="'.$favorito->getCategoria()->getIdcategoria().'" >'.$favorito->getCategoria()->getNombre().'</option>';
+                              }
+                                  
+                                  ?>
+                                   
+                               </select></td>
+                           <td><input type="text" /></td>
+                           <td><input type="submit" /></td>
+                    </form></tr> 
+                       
+                     
+>>>>>>> c3cc8a1155dba3eb1b6a0d943bef0c3f2c4fff33
                     </tbody>
 
                 </table>

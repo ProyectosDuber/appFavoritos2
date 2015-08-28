@@ -1,8 +1,11 @@
 <?php
 require_once '../Modelo/db_abstract_class.php';
 require_once '../Modelo/clUsuario.php';
+<<<<<<< HEAD
 require_once '../Modelo/clFavorito.php';
 require_once '../Modelo/categoria.php';
+=======
+>>>>>>> c3cc8a1155dba3eb1b6a0d943bef0c3f2c4fff33
 if(!empty($_GET['action'])){
     favoritos_controller::main($_GET['action']);
 }
@@ -11,6 +14,7 @@ class favoritos_controller{
 	
 	static function main($action){
 		if ($action == "crear"){
+<<<<<<< HEAD
 			favoritos_controller::crear();
 		}else if ($action == "editar"){
 			favoritos_controller::editar();
@@ -22,10 +26,21 @@ class favoritos_controller{
                     favoritos_controller::buscar();
                 }  
                 
+=======
+			usuarios_controller::crear();
+		}else if ($action == "editar"){
+			usuarios_controller::editar();
+		}else if ($action == "buscarID"){
+			usuarios_controller::buscarID(1);
+		}else if($action == "buscar"){
+                    usuarios_controller::buscar();
+                } 
+>>>>>>> c3cc8a1155dba3eb1b6a0d943bef0c3f2c4fff33
 	}
 	
 	static public function crear (){
 		try {
+<<<<<<< HEAD
 			$arrayFav = array();
 			$arrayFav['url'] = $_POST['url'];
 			$arrayFav['descripcion'] = $_POST['descripcion'];
@@ -37,6 +52,23 @@ class favoritos_controller{
 			header("Location: ../Vista/favoritos.php?respuesta=correcto");
 		} catch (Exception $e) {
 			header("Location: ../Vista/favoritos.php?respuesta=error");
+=======
+			$arrayUser = array();
+			$arrayUser['cedula'] = $_POST['cedula'];
+			$arrayUser['nombres'] = $_POST['nombres'];
+			$arrayUser['apellidos'] = $_POST['apellidos'];
+                        $arrayUser['sexo'] = $_POST['sexo'];
+			$arrayUser['fechaDeNacimiento'] = $_POST['fechaDeNacimiento'];
+                        $arrayUser['telefono'] = $_POST['telefono'];
+                        $arrayUser['email'] = $_POST['email'];
+                        $arrayUser['direccion'] = $_POST['direccion'];
+			
+			$usuario = new usuarios ($arrayUser);
+			$usuario->insertar();
+			header("Location: ../frmNewUser.php?respuesta=correcto");
+		} catch (Exception $e) {
+			header("Location: ../frmNewUser.php?respuesta=error");
+>>>>>>> c3cc8a1155dba3eb1b6a0d943bef0c3f2c4fff33
 		}
 	}
 	
@@ -104,6 +136,7 @@ class favoritos_controller{
                     
 			  header("Location: ../Vista/login.php?respuesta=error");
 		}
+<<<<<<< HEAD
                 
                 
 	}
@@ -120,6 +153,10 @@ class favoritos_controller{
             }
         }
         
+=======
+	}
+        
+>>>>>>> c3cc8a1155dba3eb1b6a0d943bef0c3f2c4fff33
         
 	
 	

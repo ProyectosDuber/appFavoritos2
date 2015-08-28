@@ -96,7 +96,11 @@ class usuarios_controller{
                       $_SESSION['password'] = $_POST['password'];
                     $_SESSION['idUsuario'] = $usario->getIdUsuario();
 
+<<<<<<< HEAD
                         header("Location: ../Vista/favoritos.php");
+=======
+                         header("Location: ../Vista/favoritos.php");
+>>>>>>> c3cc8a1155dba3eb1b6a0d943bef0c3f2c4fff33
                   }  else {
                       echo 'error';
                     header("Location: ../Vista/login.php?respuesta=invalido");
