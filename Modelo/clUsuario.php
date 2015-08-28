@@ -5,7 +5,8 @@ class clUsuario extends db_abstract_class {
     private $idUsuario;
     private $username;
     private $password;
-    
+    private $favoritos = array();
+    private $categorias =array();
     
     function __construct($datos = array()) {
         parent::__construct();
@@ -50,8 +51,24 @@ class clUsuario extends db_abstract_class {
     function setPassword($password) {
         $this->password = $password;
     }
+    
+    function getFavoritos() {
+        return $this->favoritos;
+    }
 
-        
+    function getCategorias() {
+        return $this->categorias;
+    }
+
+    function setFavoritos($favoritos) {
+        $this->favoritos = $favoritos;
+    }
+
+    function setCategorias($categorias) {
+        $this->categorias = $categorias;
+    }
+
+            
     
     protected function editar() {
         $query = "UPDATE Usuarios SET username=?,password=? where idUsuario=?";
@@ -89,6 +106,9 @@ class clUsuario extends db_abstract_class {
         foreach ($array as $column=>$valor){
             $usuario->$column = $valor;
         }
+         $usuario->setFavoritos(clFavorito::todo($usuario->getIdUsuario()));
+       $usuario->setCategorias(categoria::todo($usuario->getIdUsuario()));
+
         return $usuario;
         }else{
             return NULL;
@@ -101,6 +121,9 @@ class clUsuario extends db_abstract_class {
     }
 
     public static function getAll() {
+        
+    }
+    public static function todo(){
         
     }
 

@@ -4,42 +4,37 @@ require_once '../Modelo/clUsuario.php';
 require_once '../Modelo/clFavorito.php';
 require_once '../Modelo/categoria.php';
 if(!empty($_GET['action'])){
-	usuarios_controller::main($_GET['action']);
+    favoritos_controller::main($_GET['action']);
 }
 
-class usuarios_controller{
+class favoritos_controller{
 	
 	static function main($action){
 		if ($action == "crear"){
-			usuarios_controller::crear();
+			favoritos_controller::crear();
 		}else if ($action == "editar"){
-			usuarios_controller::editar();
+			favoritos_controller::editar();
 		}else if ($action == "buscarID"){
-			usuarios_controller::buscarID(1);
+			favoritos_controller::buscarID(1);
 		}else if($action == "buscar"){
-                    usuarios_controller::buscar();
-                }
+                    favoritos_controller::buscar();
+                } 
 	}
 	
 	static public function crear (){
-            echo 'bien';
-//		try {
-//			$arrayUser = array();
-//			$arrayUser['cedula'] = $_POST['cedula'];
-//			$arrayUser['nombres'] = $_POST['nombres'];
-//			$arrayUser['apellidos'] = $_POST['apellidos'];
-//                        $arrayUser['sexo'] = $_POST['sexo'];
-//			$arrayUser['fechaDeNacimiento'] = $_POST['fechaDeNacimiento'];
-//                        $arrayUser['telefono'] = $_POST['telefono'];
-//                        $arrayUser['email'] = $_POST['email'];
-//                        $arrayUser['direccion'] = $_POST['direccion'];
-//			
-//			$usuario = new usuarios ($arrayUser);
-//			$usuario->insertar();
-//			header("Location: ../frmNewUser.php?respuesta=correcto");
-//		} catch (Exception $e) {
-//			header("Location: ../frmNewUser.php?respuesta=error");
-//		}
+		try {
+                    session_start();
+			$datos = array();
+                        $datos['nombre']= $_POST['nombre'];
+                        $datos['descripcion'] = $_POST['descripcion'];        
+                        $datos['Usuario'] = $_SESSION['idUsuario'];
+                        $categoria = new categoria($datos);
+                        $categoria->insertar();
+                        
+			header("Location: ../Vista/favoritos.php?respuesta=correcto");
+		} catch (Exception $e) {
+			header("Location: ../Vista/favoritos.php?respuesta=error");
+		}
 	}
 	
 	static public function editar (){
@@ -88,21 +83,18 @@ class usuarios_controller{
                    $query = "SELECT * FROM Usuarios where username =? and password=?";
                    
                    $usario = clUsuario::buscar($query, $arrayDeUsuario);
-                   
                   if($usario!=NULL){
                       session_start();
                       
                       $_SESSION['username'] =$_POST['username'];
                       $_SESSION['password'] = $_POST['password'];
-                    $_SESSION['idUsuario'] = $usario->getIdUsuario();
-
-                        header("Location: ../Vista/favoritos.php");
+                      $_SESSION['idUsuario'] = $usario->getIdUsuario();
+                         header("Location: ../Vista/favoritos.php");
                   }  else {
-                      echo 'error';
-                    header("Location: ../Vista/login.php?respuesta=invalido");
+                     header("Location: ../Vista/login.php?respuesta=invalido");
                   } 
                 
-                  
+                 //  
                
                     
 		} catch (Exception $e) {
@@ -110,6 +102,9 @@ class usuarios_controller{
 			  header("Location: ../Vista/login.php?respuesta=error");
 		}
 	}
+        
+        
+	
 	
 }
 ?>
