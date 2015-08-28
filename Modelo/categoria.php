@@ -4,20 +4,22 @@ class categoria extends db_abstract_class {
     private $idcategoria;
     private $nombre;
     private $descripcion;
-    private $usuario ;
+    private $Usuario ;
    
     function __construct($datos = array()) {
         parent::__construct();
         
         if(count($datos)>1){
-            foreach ($datos as $colum=>$valor){
-                $this->$colum = $valor;
-            }
+         
+            $this->idcategoria = $datos['idcategoria'];
+             $this->nombre = $datos['nombre'];
+              $this->descripcion = $datos['descripcion'];
+               $this->Usuario = $datos['Usuario'];
         }else{
             $this->idcategoria =0;
             $this->nombre ="";
             $this->descripcion ="";
-            $this->usuario =new clUsuario();
+            $this->Usuario =new clUsuario();
             
         }
         
@@ -37,7 +39,7 @@ class categoria extends db_abstract_class {
     }
 
     function getUsuario() {
-        return $this->usuario;
+        return $this->Usuario;
     }
 
     function setIdcategoria($idcategoria) {
@@ -53,7 +55,7 @@ class categoria extends db_abstract_class {
     }
 
     function setUsuario($usuario) {
-        $this->usuario = $usuario;
+        $this->Usuario = $usuario;
     }
 
         
@@ -79,6 +81,10 @@ class categoria extends db_abstract_class {
     }
 
     protected static function getAll() {
+        
+    }
+    
+    public static function todo($idUsuario){
         
     }
 

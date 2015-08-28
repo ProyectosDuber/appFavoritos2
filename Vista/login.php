@@ -35,11 +35,11 @@ and open the template in the editor.
             
             <?php
             try {
-                if($_GET['respuesta'] =="invalido"){
+                if(@$_GET['respuesta'] =="invalido"){
                     echo'<script>
                aparecerLabel();
             </script>' ;
-                }else if($_GET['respuesta'] =="error"){
+                }else if(@$_GET['respuesta'] =="error"){
                     echo 'error';
                 }else {
                      echo' <script>
